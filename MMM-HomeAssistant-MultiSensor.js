@@ -105,7 +105,7 @@ Module.register('MMM-HomeAssistant-MultiSensor', {
         let color = sensor.color;
         if (sensor.colors) {
             Object.keys(sensor.colors).forEach((val) => {
-                if (value === val || (Number.isFinite(Number(value)) && value >= val)) {
+                if (value === val || (Number.isFinite(Number(value)) && Number(value) >= Number(val))) {
                     color = sensor.colors[val];
                 }
             });
