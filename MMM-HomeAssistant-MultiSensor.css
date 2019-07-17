@@ -1,0 +1,38 @@
+.hams-table {
+  display: inline-block;
+  width: auto;
+  text-align: left;
+}
+
+.hams-error {
+    /*TODO*/
+}
+
+.hams-item {
+  height: 50px;
+}
+
+.hams-left {
+  font-size: 42px;
+  line-height: 40px;
+  padding-right: 8px;
+  text-align: right;
+}
+
+.hams-right {}
+
+.hams-top {
+  font-size: 14px;
+  line-height: 18px;
+  color: #ccc;
+}
+
+.hams-bottom {
+  font-size: 18px;
+  line-height: 22px;
+  color: #666;
+}
+
+.hams-sensor {
+  color: #eee;
+}
