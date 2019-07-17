@@ -18,12 +18,16 @@ module.exports = NodeHelper.create({
         }
 
         request(request_args, (error, response, body) => {
-            if (!error && response && response.statusCode === 200) {
+            if (!error && response.statusCode === 200) {
                 this.sendSocketNotification('STATS_RESULT', body);
             } else {
                 console.error(this.name + ' ERROR:', error);
-                console.error(this.name + ' statusCode:', response.statusCode);
-                console.error(this.name + ' Body:', body);
+                if (response) {
+                    console.error(this.name + ' statusCode:', response.statusCode);
+                }
+                if (body) {
+                    console.error(this.name + ' Body:', body);
+                }
             }
         });
     },
