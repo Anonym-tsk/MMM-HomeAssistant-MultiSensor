@@ -19,15 +19,21 @@
   line-height: 40px;
   padding: 0 12px 0 0;
   text-align: right;
+  position: relative;
 }
 .region.right .hams-main {
   float: right;
   padding: 0 0 0 12px;
+  left: 100%;
+  transform: translateX(-100%);
 }
 
-.hams-info {}
+.hams-info {
+  position: relative;
+}
 .region.right .hams-info {
-  float: left;
+  left: -100%;
+  transform: translateX(100%);
 }
 
 .hams-top {
