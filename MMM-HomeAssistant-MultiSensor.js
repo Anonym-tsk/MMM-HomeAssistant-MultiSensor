@@ -155,7 +155,7 @@ Module.register('MMM-HomeAssistant-MultiSensor', {
     },
 
     scheduleUpdate: function(delay) {
-        setInterval(() => this.getStats, delay || this.config.updateInterval * 1000);
+        setInterval(this.getStats.bind(this), delay || this.config.updateInterval * 1000);
     },
 
     getStats: function() {
