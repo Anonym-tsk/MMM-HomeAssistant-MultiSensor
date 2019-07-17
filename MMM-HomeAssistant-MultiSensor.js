@@ -70,8 +70,8 @@ Module.register('MMM-HomeAssistant-MultiSensor', {
 		}
 
 		var error = document.createElement('div');
-		error.classList.add('hams-error');
-		error.innerHTML = 'No data from Home Assistant.';
+		error.classList.add('hams-error', 'small');
+		error.innerHTML = 'No data from Home Assistant';
 		return error;
 	},
 
