@@ -22,7 +22,6 @@
   position: relative;
 }
 .region.right .hams-main {
-  float: right;
   padding: 0 0 0 12px;
   left: 100%;
   transform: translateX(-100%);
