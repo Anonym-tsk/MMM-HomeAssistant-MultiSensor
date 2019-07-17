@@ -54,6 +54,10 @@ Module.register('MMM-HomeAssistant-MultiSensor', {
             //                 'on': '☀',
             //                 'off': '☾',
             //             },
+            //             color: 'default',
+            //             colors: {
+            //                 on: 'green',
+            //             }
             //         },
             //     ]
             // },

@@ -13,7 +13,6 @@ module.exports = NodeHelper.create({
         };
 
         if (config.token) {
-            console.log(this.name + ': Adding token', config.token);
             request_args.headers = {'Authorization': 'Bearer ' + config.token};
         }
 
