@@ -3,21 +3,32 @@
   width: auto;
   text-align: left;
 }
+.region.right .hams-table {
+  text-align: right;
+}
 
 .hams-error {}
 
 .hams-item {
   height: 50px;
+  overflow: hidden;
 }
 
-.hams-left {
+.hams-main {
   font-size: 42px;
   line-height: 40px;
-  padding-right: 12px;
+  padding: 0 12px 0 0;
   text-align: right;
 }
+.region.right .hams-main {
+  float: right;
+  padding: 0 0 0 12px;
+}
 
-.hams-right {}
+.hams-info {}
+.region.right .hams-info {
+  float: left;
+}
 
 .hams-top {
   font-size: 14px;

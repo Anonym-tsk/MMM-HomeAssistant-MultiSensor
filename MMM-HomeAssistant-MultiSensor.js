@@ -128,14 +128,14 @@ Module.register('MMM-HomeAssistant-MultiSensor', {
         const tr = document.createElement('tr');
         tr.classList.add('hams-item');
 
-        const left = document.createElement('td');
-        left.classList.add('hams-left');
-        left.appendChild(this.renderSensor(item.sensor));
-        tr.appendChild(left);
+        const main = document.createElement('td');
+        main.classList.add('hams-main');
+        main.appendChild(this.renderSensor(item.sensor));
+        tr.appendChild(main);
 
-        const right = document.createElement('td');
-        right.classList.add('hams-right');
-        tr.appendChild(right);
+        const info = document.createElement('td');
+        info.classList.add('hams-info');
+        tr.appendChild(info);
 
         const title = document.createElement('div');
         title.classList.add('hams-top');
@@ -144,7 +144,7 @@ Module.register('MMM-HomeAssistant-MultiSensor', {
         } else {
             title.textContent = this.getName(item.sensor.entity_id);
         }
-        right.appendChild(title);
+        info.appendChild(title);
 
         const sensors = document.createElement('div');
         sensors.classList.add('hams-bottom');
@@ -155,7 +155,7 @@ Module.register('MMM-HomeAssistant-MultiSensor', {
                 sensors.appendChild(document.createTextNode(' | '));
             }
         });
-        right.appendChild(sensors);
+        info.appendChild(sensors);
 
         return tr;
     },
