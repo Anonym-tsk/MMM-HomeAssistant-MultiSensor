@@ -11,6 +11,7 @@ Module.register('MMM-HomeAssistant-MultiSensor', {
         updateInterval: 300, // seconds
         updateFadeSpeed: 0, // milliseconds
         colors: {
+            default: '#eee',
             green: '#6bb928',
             blue: '#53aae4',
             red: '#f35050',
@@ -47,6 +48,13 @@ Module.register('MMM-HomeAssistant-MultiSensor', {
             //                 60: 'blue'
             //             },
             //         },
+            //         {
+            //             entity_id: 'light.guestroom',
+            //             replacements: {
+            //                 'on': '☀',
+            //                 'off': '☾',
+            //             },
+            //         },
             //     ]
             // },
         ],
@@ -77,14 +85,23 @@ Module.register('MMM-HomeAssistant-MultiSensor', {
 
     renderSensor: function(sensor) {
         let value = this.getValue(sensor.entity_id);
+        let result = value;
 
         const span = document.createElement('span');
         span.classList.add('hams-sensor');
 
+        if (sensor.replacements) {
+            Object.keys(sensor.replacements).forEach((val) => {
+                if (value === val) {
+                    result = sensor.replacements[val];
+                }
+            });
+        }
+
         let color = sensor.color;
         if (sensor.colors) {
             Object.keys(sensor.colors).forEach((val) => {
-                if (value >= val) {
+                if (value === val || (Number.isFinite(Number(value)) && value >= val)) {
                     color = sensor.colors[val];
                 }
             });
@@ -94,12 +111,12 @@ Module.register('MMM-HomeAssistant-MultiSensor', {
         }
 
         if (sensor.hasOwnProperty('unit')) {
-            value += sensor.unit;
+            result += sensor.unit;
         } else {
-            value += this.getUnit(sensor.entity_id);
+            result += this.getUnit(sensor.entity_id);
         }
 
-        span.textContent = value;
+        span.textContent = result;
         return span;
     },
 
