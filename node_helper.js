@@ -1,27 +1,34 @@
-const NodeHelper = require('node_helper');
-const fetch = require('node-fetch');
+var NodeHelper = require('node_helper');
+var request = require('request');
 
 module.exports = NodeHelper.create({
     start: function() {
         console.log('Starting node_helper for module [' + this.name + ']');
     },
 
-    getStats: async function(config) {
-        let args = {
-            headers: {'Content-Type': 'application/json'}
+    getStats: function(config) {
+        let request_args = {
+            url: this.buildUrl(config),
+            json: true
         };
 
         if (config.token) {
-            args.headers['Authorization'] = 'Bearer ' + config.token;
+            request_args.headers = {'Authorization': 'Bearer ' + config.token};
         }
 
-        try {
-            const response = await fetch(this.buildUrl(config), args);
-            const body = await response.json();
-            this.sendSocketNotification('STATS_RESULT', body);
-        } catch (error) {
-            console.error(this.name + ' ERROR:', error);
-        }
+        request(request_args, (error, response, body) => {
+            if (!error && response.statusCode === 200) {
+                this.sendSocketNotification('STATS_RESULT', body);
+            } else {
+                console.error(this.name + ' ERROR:', error);
+                if (response) {
+                    console.error(this.name + ' statusCode:', response.statusCode);
+                }
+                if (body) {
+                    console.error(this.name + ' Body:', body);
+                }
+            }
+        });
     },
 
     buildUrl: function(config) {
