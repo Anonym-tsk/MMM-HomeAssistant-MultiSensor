@@ -1,0 +1,16 @@
+{
+  "name": "mmm-homeassistant-multisensor",
+  "version": "1.0.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Anonym-tsk/MMM-HomeAssistant-MultiSensor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Anonym-tsk/MMM-HomeAssistant-MultiSensor/issues"
+  },
+  "homepage": "https://github.com/Anonym-tsk/MMM-HomeAssistant-MultiSensor#readme",
+  "dependencies": {
+    "node-fetch": "^3.2.0"
+  }
+}

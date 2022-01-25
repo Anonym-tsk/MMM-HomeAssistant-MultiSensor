@@ -1,5 +1,5 @@
 var NodeHelper = require('node_helper');
-var request = require('request');
+var fetch = require('node-fetch');
 
 module.exports = NodeHelper.create({
     start: function() {
@@ -8,26 +8,19 @@ module.exports = NodeHelper.create({
 
     getStats: function(config) {
         let request_args = {
-            url: this.buildUrl(config),
-            json: true
+            headers: {'Content-Type': 'application/json'}
         };
 
         if (config.token) {
-            request_args.headers = {'Authorization': 'Bearer ' + config.token};
+            request_args.headers['Authorization'] = 'Bearer ' + config.token;
         }
 
-        request(request_args, (error, response, body) => {
-            if (!error && response.statusCode === 200) {
-                this.sendSocketNotification('STATS_RESULT', body);
-            } else {
-                console.error(this.name + ' ERROR:', error);
-                if (response) {
-                    console.error(this.name + ' statusCode:', response.statusCode);
-                }
-                if (body) {
-                    console.error(this.name + ' Body:', body);
-                }
-            }
+        fetch(this.buildUrl(config), request_args).then((response) => {
+            return response.json();
+        }).then((body) => {
+            this.sendSocketNotification('STATS_RESULT', body);
+        }).catch((error) => {
+            console.error(this.name + ' ERROR:', error);
         });
     },
 
